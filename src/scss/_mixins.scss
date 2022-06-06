@@ -1,0 +1,25 @@
+@mixin mq($value, $constraint: max, $feature: width) {
+  @media screen and (#{$constraint}-#{$feature}: $value + px) {
+    @content;
+  }
+}
+
+@mixin flexgrid($gap, $columns, $offset: 0) {
+  flex: 0 0 calc(#{100% / $columns} - #{$gap * ($columns - 1) / $columns});
+  max-width: calc(#{100% / $columns} - #{$gap * ($columns - 1) / $columns});
+  width: 100%;
+  margin-right: $gap;
+  margin-bottom: $gap;
+
+  &:nth-child(#{$columns + $offset}n) {
+    margin-right: 0;
+  }
+}
+
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
