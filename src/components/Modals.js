@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Register from './Register';
 import Login from './Login';
 import GetFlowers from './GetFlowers';
+import User from './User';
 import { Modal } from 'react-bootstrap';
 import searchIcon from './../images/search-icon.png';
 
@@ -15,7 +16,7 @@ class Modals extends React.Component {
             isSignupSuccessful: false,
             showLoginModal: false,
             isLoginSuccessful: false,
-            showProfileModal: false,
+            showUserProfile: false,
             isLoaded: false,
             userFromDatabase: [],
             clientToken: '',
@@ -37,6 +38,7 @@ class Modals extends React.Component {
                     loginModal={this.showLoginModal}
                     loginState={this.state.isLoginSuccessful}
                     userData={this.state.userFromDatabase}
+                    showProfile={this.showUserProfile}
                 />
                 <div className='banner'>
                     <h1 className='banner__title'>Discover flowers around you</h1>
@@ -56,7 +58,7 @@ class Modals extends React.Component {
                     signupSuccess={this.signupSuccessful}
                     setEmail={this.setEmail}
                     setDate={this.setDate}
-                    setApiToken={this.setApiToken}
+                    setApi={this.setApi}
                 />
 
                 <SuccessSignupModal
@@ -73,7 +75,20 @@ class Modals extends React.Component {
                     loginSuccessModal={this.showLoginSuccessModal}
                     email={this.state.email}
                     setEmail={this.setEmail}
-                    setApiToken={this.setApiToken}
+                    setApi={this.setApi}
+                />
+
+                <UserProfile
+                    show={this.state.showUserProfile}
+                    onHide={() => this.showUserProfile(false)}
+                    userData={this.state.userFromDatabase}
+                    email={this.state.email}
+                    dateOfBirth={this.state.dateOfBirth}
+                    setEmail={this.setEmail}
+                    setDate={this.setDate}
+                    setApi={this.setApi}
+                    loginSuccessful={this.loginSuccessful}
+                    showProfile={this.showUserProfile}
                 />
             </div>
         );
@@ -109,7 +124,7 @@ class Modals extends React.Component {
         this.setState({
             isSignupSuccessful: value
         });
-        this.checkUserToken();
+        this.checkUser();
     }
 
     showSignupModal = (value) => {
@@ -128,7 +143,7 @@ class Modals extends React.Component {
         this.setState({
             isLoginSuccessful: value
         });
-        this.checkUserToken();
+        this.checkUser();
     }
 
     showLoginSuccessModal = (value) => {
@@ -160,6 +175,12 @@ class Modals extends React.Component {
             this.getUserDetails();
         }
     }
+
+    showUserProfile = (value) => {
+        this.setState({
+            showUserProfile: value
+        });
+    }
 }
 
 function SignupModal(props) {
@@ -170,7 +191,7 @@ function SignupModal(props) {
                 signupSuccess={props.signupSuccess}
                 setEmail={props.setEmail}
                 setDate={props.setDate}
-                setApiToken={props.setApi}
+                setApi={props.setApi}
             />
             
         </Modal>
@@ -203,9 +224,32 @@ function LoginModal(props) {
                 <Login
                     email={props.email}
                     setEmail={props.setEmail}
-                    setApiToken={props.setApi}
+                    setApi={props.setApi}
                     loginModal={props.loginModal}
                     loginSuccessful={props.loginSuccessful}
+                />
+            </div>
+        </Modal>
+    );
+}
+
+function UserProfile(props) {
+    return (
+        <Modal
+            show={props.show}
+            onHide={props.onHide}
+            centered>
+            <div className="user">
+                <User
+                    onHide={props.onHide}
+                    userData={props.userData}
+                    email={props.email} 
+                    dateOfBirth={props.dateOfBirth} 
+                    setEmail={props.setEmail}
+                    setDate={props.setDate}
+                    setApi={props.setApi}
+                    loginSuccessful={props.loginSuccessful}
+                    showProfile={props.showUserProfile}
                 />
             </div>
         </Modal>

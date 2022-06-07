@@ -271,3 +271,71 @@
     }
   }
 }
+
+.user {
+  padding: 20px 20px 60px 110px;
+  width: 590px;
+  font-family: $ubuntu;
+
+  &__header {
+    margin-bottom: 41px;
+    display: flex;
+  }
+
+  &__image {
+    margin-right: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    background-color: rgba($black, 0.05);
+  }
+
+  &__header-names {
+    font-size: 25px;
+    font-weight: 300;
+    color: $black-grey;
+    margin: 0;
+    margin-bottom: 6px;
+  }
+
+  &__close-button {
+    border: none;
+    padding: 0;
+    background: none;
+    display: flex;
+    margin-left: auto;
+    margin-bottom: 25px;
+  }
+
+  &__sightings {
+    font-size: 13px;
+    color: $main-grey;
+  }
+
+  &__field {
+    margin-bottom: 31px;
+  }
+
+  &__label {
+    font-size: 10px;
+    color: $main-grey;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    font-size: 18px;
+    color: $black-grey;
+    margin: 0;
+  }
+
+  &__logout {
+    margin-top: 70px;
+  }
+
+  &__logout-button {
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 18px 50px;
+  }
+}
