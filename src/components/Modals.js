@@ -53,7 +53,7 @@ class Modals extends React.Component {
 
                 <SignupModal
                     show={this.state.showSignupModal}
-                    onHide={() => this.showSignupModal(false)}
+                    o0Hide={() => this.showSignupModal(false)}
                     signupModal={this.showSignupModal}
                     signupSuccess={this.signupSuccessful}
                     setEmail={this.setEmail}
@@ -103,21 +103,21 @@ class Modals extends React.Component {
                 'Content-Type': 'application/json',
             }
         })
-            .then(res => res.json())
+        .then(res => res.json())
             .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        userFromDatabase: result.user
-                    });
-                },
-                (err) => {
-                    this.setState({
-                        isLoaded: true,
-                        err
-                    });
-                }
-            )
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    userFromDatabase: result.user
+                });
+            },
+            (err) => {
+                this.setState({
+                    isLoaded: true,
+                    err
+                });
+            }
+        )
     }
 
     signupSuccessful = (value) => {
@@ -180,6 +180,29 @@ class Modals extends React.Component {
         this.setState({
             showUserProfile: value
         });
+    }
+
+    async getSightings() {
+        fetch("https://flowrspot-api.herokuapp.com/api/v1/sightings", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        sightings: result.sightings
+                    });
+                },
+                (err) => {
+                    this.setState({
+                    err
+                });
+            }
+        )
     }
 }
 

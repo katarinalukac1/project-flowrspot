@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class GetFlowers extends React.Component {
   constructor(props) {
@@ -44,11 +45,35 @@ class GetFlowers extends React.Component {
               <button className="flowers__card-button">{flower.sightings} sightings</button>
             </div>
             <img src={flower.profile_picture} className='flowers__card-image'/>
+            {isLoginSuccessful ? <button className="flowers__card-favorite-button" onClick={() => this.favoriteFlower(flower.id, this.props.authToken)}>
+            <FontAwesomeIcon icon="star" />
+              </button> : null }
             </div>
           ))}
         </div>
       </div>
     );
+  }
+
+  favoriteFlower(id, clientToken) {
+    fetch("https://flowrspot-api.herokuapp.com/api/v1/flowers/" + id + "/favorites", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + clientToken
+      }
+    })
+      .then(res => res.json())
+      .then(
+      (result) => {
+        console.log(result)
+      },
+
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 }
 
