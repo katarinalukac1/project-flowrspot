@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import logo from './../images/logo.png';
+import Hamburger from './Hamburger';
 
 class Navbar extends React.Component {
     render() {
@@ -10,6 +11,7 @@ class Navbar extends React.Component {
                     <Link to="/" className='header__logo'>
                         <img src={logo} alt="FlowrSpot" />
                     </Link>
+                    <Hamburger />
                     <ul className='header__navbar-list'>
                         <li className='header__navbar-item'>
                             <Link to="/flowers" className="header__navbar-link">Flowers</Link>
@@ -28,7 +30,7 @@ class Navbar extends React.Component {
                                 <button onClick={() => this.props.signupModal(true)} className="button">New Account</button>
                             </Link>
                         </li>
-                    </ul>        
+                    </ul>  
                 </nav>
             </header>
         );

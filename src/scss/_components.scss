@@ -1,4 +1,57 @@
 .header {
+  &__hamburger {
+    display: none;
+    position: relative;
+
+    @include mq(1200) {
+      display: block;
+    }
+  }
+
+  &__hamburger-bar {
+    display: block;
+    background-color: $main-grey;
+    height: 1.5px;
+    width: 24px;
+    transition: all .3s ease-in-out;
+
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+
+  &__hamburger.active &__hamburger-bar {
+    &:nth-child(1) {
+      transform: rotate(45deg);
+      position: absolute;
+      left: 1px;
+    }
+
+    &:nth-child(2) {
+      display: none;
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__hamburger.active ~ &__navbar-list {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 65px;
+    background-color: $white;
+    width: 100%;
+    height: 100vh;
+    padding: 80px 25px 25px;
+    z-index: 11;
+  }
+
+  &__hamburger.active ~ &__navbar-list &__navbar-item {
+    margin-bottom: 45px;
+  }
+
   &__navbar {
     font-family: $ubuntu;
     font-size: 14px;
@@ -8,6 +61,10 @@
     margin-bottom: 21px;
     background-color: $white;
     align-items: center;
+
+    @include mq(1200) {
+      margin-bottom: 0;
+    }
   }
 
   &__navbar-list {
@@ -16,6 +73,10 @@
     align-items: center;
     padding: 0;
     margin: 0;
+
+    @include mq(1200) {
+      display: none;
+    }
   }
 
   &__navbar-item {
@@ -51,12 +112,20 @@
   padding: 133px 0 180px 0;
   margin-bottom: 69px;
 
+  @include mq(1200) {
+    margin-bottom: 40px;
+  }
+
   &__title {
     font-family: $montserrat;
     font-weight: 600;
     font-size: 40px;
     margin: 0;
     margin-bottom: 15px;
+
+    @include mq(1200) {
+      font-weight: 300;
+    }
   }
 
   &__subtitle {
@@ -92,6 +161,11 @@
       font-size: 18px;
       font-family: $ubuntu;
       font-weight: 300;
+    }
+
+    @include mq(1200) {
+      height: 56px;
+      width: 458px;
     }
   }
 
@@ -209,6 +283,24 @@
     height: 350px;
     position: relative;
     text-align: center;
+
+    @include mq(1200) {
+      @include flexgrid(17px, 3);
+      height: 290px;
+
+      &:nth-child(4n) {
+        margin-right: auto;
+      }
+
+      @include mq(600) {
+        @include flexgrid(20px, 2);
+        height: 230px;
+
+        &:nth-child(3n) {
+          margin-right: auto;
+        }
+      }
+    }
 
     &::after {
       content: '';
