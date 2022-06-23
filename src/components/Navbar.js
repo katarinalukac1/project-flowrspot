@@ -5,6 +5,8 @@ import Hamburger from './Hamburger';
 
 class Navbar extends React.Component {
     render() {
+        let loginState = this.props.loginState;
+        let userInfo = this.props.userInfo;
         return (
             <header className='header'>
                 <nav className='header__navbar'>
