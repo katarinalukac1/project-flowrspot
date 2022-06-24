@@ -7,6 +7,7 @@ import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import App from './App';
 import FlowerList from './components/FlowerList';
+import Sightings from './components/Sightings';
 
 const Reducer = combineReducers({
     form: formReducer
@@ -19,7 +20,7 @@ const router = (
             <Switch>
                 <Route exact path="/" component={App} />
                 <Route path="/flowers" component={FlowerList} /> 
-                <Route path="/sightings" component={App} />
+                <Route path="/sightings" component={Sightings} />
                 <Route path="/favorites" component={App} /> 
             </Switch>
     </BrowserRouter>

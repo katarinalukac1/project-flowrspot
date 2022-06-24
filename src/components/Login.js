@@ -19,21 +19,21 @@ class Login extends React.Component {
             },
             body: JSON.stringify(values),
         })
-            .then(res => res.json())
+            .then(r => r.json())
             .then(
-                (result) => {
+                (res) => {
                     this.setState({
                         isLoaded: true,
                     });
                     this.props.setEmail(values.email);
-                    if (result.auth_token != null) {
+                    if (res.auth_token != null) {
                         this.props.loginModal(false);
-                        this.props.setApiToken(result.auth_token);
+                        this.props.setApiToken(res.auth_token);
                         this.props.loginSuccessful(true);
                         this.props.loginSuccessModal(true);
-                    } else if (result.auth_token == null) {
+                    } else if (res.auth_token == null) {
                         this.setState({
-                            err: result.err
+                            err: res.err
                         })
                     }
                 },

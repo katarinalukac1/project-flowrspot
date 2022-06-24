@@ -1,7 +1,44 @@
 import React from "react";
+import Navbar from "./Navbar";
 
-const sightings = () => {
-    return <div>Sightings</div>
-};
+class Sightings extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          error: null,
+          isLoaded: false,
+          sightings: [],
+        }
+      }
+    
+      componentDidMount() {
+        fetch("https://flowrspot-api.herokuapp.com/api/v1/sightings")
+          .then(r => r.json())
+          .then(
+            (res) => {
+              this.setState({
+                isLoaded: true,
+                sightings: res.sightings
+              });
+            },
+            (err) => {
+              this.setState({
+                isLoaded: true,
+                err
+            });
+        })
+    }
 
-export default sightings;
+    render() {
+        return (
+            <div className="main-container">
+                <Navbar />
+                <div className="sightings">
+
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Sightings;

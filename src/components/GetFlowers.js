@@ -13,12 +13,12 @@ class GetFlowers extends React.Component {
 
   componentDidMount() {
     fetch("https://flowrspot-api.herokuapp.com/api/v1/flowers")
-      .then(res => res.json())
+      .then(r => r.json())
       .then(
-        (result) => {
+        (res) => {
           this.setState({
             isLoaded: true,
-            flowers: result.flowers
+            flowers: res.flowers
           });
         },
         (err) => {
@@ -64,10 +64,10 @@ class GetFlowers extends React.Component {
         'Authorization': 'Bearer ' + clientToken
       }
     })
-      .then(res => res.json())
+      .then(r => r.json())
       .then(
-      (result) => {
-        console.log(result)
+      (res) => {
+        console.log(res)
       },
 
       (error) => {

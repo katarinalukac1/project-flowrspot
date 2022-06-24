@@ -191,10 +191,26 @@
   }
 }
 
+.modal-backdrop {
+  @include mq(600) {
+    background-color: $white !important;
+  }
+}
+
+.modal-backdrop.show {
+  @include mq(600) {
+    opacity: 0 !important;
+  }
+}
+
 .modal-content {
   width: unset !important;
   left: 50%;
   transform: translateX(-50%);
+
+  @include mq(600) {
+    border: none !important;
+  }
 }
 
 .login-modal {

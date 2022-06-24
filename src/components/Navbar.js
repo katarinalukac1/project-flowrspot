@@ -19,7 +19,7 @@ class Navbar extends React.Component {
                             <Link to="/flowers" className="header__navbar-link">Flowers</Link>
                         </li>
                         <li className='header__navbar-item'>
-                            <Link to="/sightings" className="header__navbar-link">Latest Sightings</Link>
+                            <Link to="/Sightings" className="header__navbar-link">Latest Sightings</Link>
                         </li>
                         <li className='header__navbar-item'>
                             <Link to="/favorites" className="header__navbar-link">Favorites</Link>

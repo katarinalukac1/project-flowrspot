@@ -21,7 +21,7 @@ class Register extends React.Component {
         })
             .then(r => r.json())
             .then(
-                (result) => {
+                (res) => {
                     this.setState({
                         isLoaded: true,
                     });
@@ -29,14 +29,14 @@ class Register extends React.Component {
                     this.props.setEmail(values.email);
                     this.props.setDate(values.date_of_birth);
 
-                    if (result.auth_token != null) {
-                        this.props.setApiToken(result.auth_token);
+                    if (res.auth_token != null) {
+                        this.props.setApiToken(res.auth_token);
                         this.props.signupModal(false);
                         this.props.signupSuccess(true);
                     } 
-                    else if (result.auth_token == null) {
+                    else if (res.auth_token == null) {
                         this.setState({
-                            err: result.err
+                            err: res.err
                         })
                     }
                 },
