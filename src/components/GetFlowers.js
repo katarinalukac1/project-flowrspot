@@ -5,7 +5,7 @@ class GetFlowers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
+      err: null,
       isLoaded: false,
       flowers: [],
     }
@@ -70,8 +70,8 @@ class GetFlowers extends React.Component {
         console.log(res)
       },
 
-      (error) => {
-        console.log(error)
+      (err) => {
+        console.log(err)
       }
     )
   }

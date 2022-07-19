@@ -16,7 +16,7 @@ class Modals extends React.Component {
             isSignupSuccessful: false,
             showLoginModal: false,
             isLoginSuccessful: false,
-            showUserProfile: false,
+            showProfile: false,
             isLoaded: false,
             userFromDatabase: [],
             clientToken: '',
@@ -38,7 +38,7 @@ class Modals extends React.Component {
                     loginModal={this.showLoginModal}
                     loginState={this.state.isLoginSuccessful}
                     userData={this.state.userFromDatabase}
-                    showProfile={this.showUserProfile}
+                    showProfile={this.showProfile}
                 />
                 <div className='banner'>
                     <h1 className='banner__title'>Discover flowers around you</h1>
@@ -79,8 +79,8 @@ class Modals extends React.Component {
                 />
 
                 <UserProfile
-                    show={this.state.showUserProfile}
-                    onHide={() => this.showUserProfile(false)}
+                    show={this.state.showProfile}
+                    onHide={() => this.showProfile(false)}
                     userData={this.state.userFromDatabase}
                     email={this.state.email}
                     dateOfBirth={this.state.dateOfBirth}
@@ -88,7 +88,7 @@ class Modals extends React.Component {
                     setDate={this.setDate}
                     setApi={this.setApi}
                     loginSuccessful={this.loginSuccessful}
-                    showProfile={this.showUserProfile}
+                    showProfile={this.showProfile}
                 />
             </div>
         );
@@ -105,10 +105,10 @@ class Modals extends React.Component {
         })
         .then(res => res.json())
             .then(
-            (result) => {
+            (res) => {
                 this.setState({
                     isLoaded: true,
-                    userFromDatabase: result.user
+                    userFromDatabase: res.user
                 });
             },
             (err) => {
@@ -176,9 +176,9 @@ class Modals extends React.Component {
         }
     }
 
-    showUserProfile = (value) => {
+    showProfile = (value) => {
         this.setState({
-            showUserProfile: value
+            showProfile: value
         });
     }
 
@@ -190,11 +190,11 @@ class Modals extends React.Component {
                 'Content-Type': 'application/json',
             }
         })
-            .then(res => res.json())
+            .then(r => r.json())
             .then(
-                (result) => {
+                (res) => {
                     this.setState({
-                        sightings: result.sightings
+                        sightings: res.sightings
                     });
                 },
                 (err) => {
@@ -272,7 +272,7 @@ function UserProfile(props) {
                     setDate={props.setDate}
                     setApi={props.setApi}
                     loginSuccessful={props.loginSuccessful}
-                    showProfile={props.showUserProfile}
+                    showProfile={props.showProfile}
                 />
             </div>
         </Modal>
